@@ -152,3 +152,13 @@ INSERT INTO animals (name, commands, birthday, from_table)
 SELECT name, commands, birthday, 'donkeys'
 FROM donkeys;
 ```
+Для задания 13, видимо, нужно было создать не класс, а классы:
+* [Животные](Classes/Aminals.java)
+	* [Домашние животные](Classes/Pets.java)
+		* [Собаки](Classes/Dogs.java)
+		* [Кошки](Classes/Cats.java)
+		* [Хомяки](Classes/Hamsters.java)
+	* [Вьючные животные](Classes/Packs.java)
+		* [Лошади](Classes/Horses.java)
+		* [Верблюды](Classes/Camels.java)
+		* [Ослы](Classes/Donkeys.java)
