@@ -51,7 +51,7 @@ public class Registry {
         while (!need2stop) {
             Main.clearScreen();
             listAnimals();
-            System.out.println("cancel  - Отменить просмотр");
+            System.out.println("cancel - Отменить просмотр");
             System.out.print("Введите ID животного, список команд которого хотите увидеть: ");
             String command = Main.in.nextLine();
             if (command.equals("cancel")) {
@@ -59,20 +59,18 @@ public class Registry {
             } else {
                 try {
                     Animals animal = getAnimalById(Integer.parseInt(command));
-                    try {
-                        if (!animal.equals(null)) {
-                            String commands = animal.getCommands();
-                            if (commands.equals("[]"))
-                                Main.errorCodes(5);
-                            else
-                                System.out.println(commands);
-                            System.out.println("Нажмите Enter, чтобы продолжить...");
-                            Main.in.nextLine();
-                        }
-                    } catch (NullPointerException e) {
-                        Main.errorCodes(3, command);
+                    if (!animal.equals(null)) {
+                        String commands = animal.getCommands();
+                        if (commands.equals("[]"))
+                            Main.errorCodes(5);
+                        else
+                            System.out.println(commands);
+                        System.out.println("Нажмите Enter, чтобы продолжить...");
+                        Main.in.nextLine();
                     }
                 } catch (NumberFormatException e) {
+                    Main.errorCodes(3, command);
+                } catch (NullPointerException e) {
                     Main.errorCodes(3, command);
                 }
 
@@ -104,7 +102,7 @@ public class Registry {
         boolean need2stop = false;
         while (!need2stop) {
             listAnimals();
-            System.out.println("cancel  - Отменить добавление");
+            System.out.println("cancel - Отменить добавление");
             System.out.print("Введите ID животного, для которого хотите добавить новую команду: ");
             String command = Main.in.nextLine();
             if (command.equals("cancel")) {
@@ -112,15 +110,13 @@ public class Registry {
             } else {
                 try {
                     Animals animal = getAnimalById(Integer.parseInt(command));
-                    try {
-                        if (!animal.equals(null)) {
-                            Main.clearScreen();
-                            animal.addCommand();
-                        }
-                    } catch (NullPointerException e) {
-                        Main.errorCodes(3, command);
+                    if (!animal.equals(null)) {
+                        Main.clearScreen();
+                        animal.addCommand();
                     }
-                } catch (Exception e) {
+                } catch (NumberFormatException e) {
+                    Main.errorCodes(3, command);
+                } catch (NullPointerException e) {
                     Main.errorCodes(3, command);
                 }
             }
