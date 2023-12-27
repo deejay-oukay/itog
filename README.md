@@ -162,3 +162,7 @@ FROM donkeys;
 		* [Лошади](Classes/Horses.java)
 		* [Верблюды](Classes/Camels.java)
 		* [Ослы](Classes/Donkeys.java)
+
+Для задания 14 созданы ещё 2 класса:
+* [Главный](Classes/Main.java)
+* [Реестр](Classes/Registry.java)

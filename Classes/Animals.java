@@ -3,43 +3,53 @@ package Classes;
 import java.util.ArrayList;
 
 public class Animals {
+    private Integer id;
     private String name;
     private ArrayList<String> commands = new ArrayList<String>();
     private String birthday;
 
-    public Animals(String name, String birthday) {
-        this.name = name;
-        this.birthday = birthday;
+    public Animals() {
+        id = Counter.add();
+        setName();
+        setBirthday();
+        Main.errorCodes(0);
+        System.out.println("Можете добавить ещё одно животное...");
     }
 
-    public String getName() {
-        return name;
+    public void setName() {
+        System.out.print("Введите имя животного: ");
+        this.name = Main.in.nextLine();
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getCommands() {
+        return commands.toString();
     }
 
-    public ArrayList<String> getCommands() {
-        return commands;
+    public void addCommand() {
+        System.out.print("Введите новую команду: ");
+        String command = Main.in.nextLine();
+        if (commands.contains(command))
+            Main.errorCodes(6, command);
+        else {
+            commands.add(command);
+            Main.errorCodes(0);
+
+        }
     }
 
-    public void setCommands(ArrayList<String> commands) {
-        this.commands = commands;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
+    public void setBirthday() {
+        System.out.print("Введите дату рождения (можно примерную): ");
+        // возможность ввести что угодно вместо даты - это не баг, а фитча :-)
+        this.birthday = Main.in.nextLine();
     }
 
     @Override
     public String toString() {
-        return getClass().getName() + ": [Имя=" + name + ", Команды=" + commands.toString() + ", Дата рождения="
-                + birthday + "]\n";
+        return getClass().getName() + ": [ID = " + id + ", Имя = " + name + ", Дата рождения = " + birthday + "]";
+    }
+
+    public Integer getId() {
+        return id;
     }
 
 }
